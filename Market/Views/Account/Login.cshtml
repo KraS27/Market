@@ -1,0 +1,29 @@
+﻿@model Market.Domain.ViewModels.LoginViewModel
+
+
+@{
+    ViewData["Title"] = "CreateProduct";
+    Layout = "_Layout";
+}
+
+<style>
+    body{
+        background: url("/img/SpaceBg.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;    
+    }
+</style>
+
+<form asp-controller="Account" asp-action="Login" method="post">
+    <div class="position-absolute top-50 start-50 translate-middle mb-3">
+        <h1 class="text-white mb-3">Login</h1>
+        <div class="input-group mb-3">
+            <input asp-for="@Model.Name" type="text" class="form-control" placeholder="Name" aria-label="Name">       
+        </div>    
+        <div class="input-group mb-3">
+            <input asp-for="@Model.Password" type="number" class="form-control" placeholder="Password" aria-label="Password">       
+        </div>               
+        <button class="btn btn-success mb-5 w-100" type="submit">LogIn</button>
+    </div>
+</form>

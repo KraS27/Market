@@ -16,7 +16,7 @@ namespace Market.Domain.ViewModels
 
         [Required(ErrorMessage = "Enter Password")]
         [DataType(DataType.Password)]
-        [MinLength(6, ErrorMessage = "Password must contain at least 6 symbols")]
+        [MinLength(4, ErrorMessage = "Password must contain at least 4 symbols")]
         public string Password { get; set; }
     }
 }

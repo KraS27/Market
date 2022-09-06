@@ -9,15 +9,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 
 
 namespace Market.Service.Implementations
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository _productRepository;
-        
-
+        private readonly IProductRepository _productRepository;      
+               
         public ProductService(IProductRepository productRepository)
         {
             _productRepository = productRepository;

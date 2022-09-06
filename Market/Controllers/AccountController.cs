@@ -11,7 +11,7 @@ namespace Market.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService userService;
-
+        
         public AccountController(IUserService userService)
         {
             this.userService = userService;

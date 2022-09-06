@@ -11,6 +11,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +21,5 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\products\" />
-  </ItemGroup>
-
+  </ItemGroup>	
 </Project>

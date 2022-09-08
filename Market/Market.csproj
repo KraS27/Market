@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\img\products\**" />
+    <Content Remove="wwwroot\img\products\**" />
+    <EmbeddedResource Remove="wwwroot\img\products\**" />
+    <None Remove="wwwroot\img\products\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
       <PrivateAssets>all</PrivateAssets>
@@ -17,9 +24,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Market.DAL\Market.DAL.csproj" />
     <ProjectReference Include="..\Market.Service\Market.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\img\products\" />
   </ItemGroup>	
 </Project>

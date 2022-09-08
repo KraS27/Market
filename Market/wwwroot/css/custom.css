@@ -1,4 +1,20 @@
-.nav-font-size{
+*,
+*::after
+*::before{
+    box-sizing: border-box;
+}
+
+.nav-font{
     font-size: 28px;
-    font: italic "Fira Sans"; 
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;   
+}
+
+.home-header-text{
+    font-size: 60px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    color: #262C27;
+
+    margin-top: 55px;
 }

@@ -9,12 +9,12 @@ namespace Market.Domain.ViewModels
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Enter Name")]
-        [MaxLength(50, ErrorMessage ="Max Length 50 symbols")]
+        [Required(ErrorMessage ="Введите имя")]
+        [MaxLength(50, ErrorMessage ="Максимальной значение 50 символов")]
         public string Caption { get; set; }
 
-        [Required(ErrorMessage = "Enter Name")]
-        [Range(1, 5000, ErrorMessage ="Incorect Value")]
+        [Required(ErrorMessage = "Введите цену")]
+        [Range(1, 5000, ErrorMessage ="Неверное значение")]
         public int Price { get; set; }
 
         public string Description { get; set; }

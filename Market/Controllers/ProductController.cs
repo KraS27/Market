@@ -31,12 +31,14 @@ namespace Market.Controllers
         {
             var response = await productService.GetTypes();
 
-            if (response.Status == Domain.Enum.StatusCode.Ok)
+            if(response.Status == Domain.Enum.StatusCode.Ok)
             {
-                ViewBag.Types = response.Data;
-                return View();
+                return View(new ProductViewModel
+                {
+                    ProductTypes = response.Data
+                });
             }
-            return RedirectToAction("Error");
+            return RedirectToAction("Error");           
         }
 
         [HttpPost]

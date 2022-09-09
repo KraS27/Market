@@ -22,8 +22,8 @@
             <input asp-for="@Model.Image" type="file" class="form-control">
         </div>
         <div class="input-group mb-3">
-            <select  class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">                 
-            @foreach(ProductType type in @ViewBag.Types)
+            <select asp-for="@Model.ProductType.Name" type="text" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">                 
+            @foreach(ProductType type in @Model.ProductTypes)
             {
                 <option value="@type.Name">@type.Name</option>
             }                       

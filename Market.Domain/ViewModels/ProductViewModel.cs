@@ -1,6 +1,7 @@
 ﻿using Market.Domain.Entity;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Market.Domain.ViewModels
@@ -24,5 +25,7 @@ namespace Market.Domain.ViewModels
 
         [Required]
         public IFormFile Image { get; set; }
+
+        public IEnumerable<ProductType> ProductTypes { get; set; }        
     }
 }

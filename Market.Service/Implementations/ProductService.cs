@@ -1,6 +1,5 @@
 ﻿using Market.DAL.Interfaces;
 using Market.Domain.Entity;
-using Market.Domain.Interfaces;
 using Market.Domain.ViewModels;
 using Market.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -149,7 +148,6 @@ namespace Market.Service.Implementations
             
             try
             {            
-
                 byte[] imageData = null;
                 
                 using (var binaryReader = new BinaryReader(model.Image.OpenReadStream()))

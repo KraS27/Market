@@ -11,8 +11,9 @@
 }
 
 .home-header-text{
-    font-size: 60px;
+    font-size: 51px;
     font-family: 'Roboto Slab', serif;
+    text-align: justify;
     font-weight: 400;
     color: #262C27;
 

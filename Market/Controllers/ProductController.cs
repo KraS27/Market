@@ -15,6 +15,7 @@ namespace Market.Controllers
             this.productService = productService;
         }
 
+        [HttpPost]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var response = await productService.DeleteProduct(id);
@@ -84,6 +85,18 @@ namespace Market.Controllers
             if (response.Status == Domain.Enum.StatusCode.Ok)
             {
                 return View(response.Data);
+            }
+            return RedirectToAction("Error");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProduct(int id, ProductViewModel model)
+        {
+            var response = await productService.Edit(id, model);
+
+            if (response.Status == Domain.Enum.StatusCode.Ok)
+            {
+                return RedirectToAction("GetAllProducts");
             }
             return RedirectToAction("Error");
         }

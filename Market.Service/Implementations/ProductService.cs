@@ -22,36 +22,40 @@ namespace Market.Service.Implementations
         }
 
         public async Task<BaseResponse<bool>> DeleteProduct(int id)
-        {
-            var baseResponse = new BaseResponse<bool>()
-            {
-                Data = true
-            };
-
+        {           
             try
             {
                 var product = await _productRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
 
                 if (product == null)
                 {
-                    baseResponse.Data = false;
-                    baseResponse.Status = Domain.Enum.StatusCode.NotFound;
-                }
+                    return new BaseResponse<bool>()
+                    {
+                        Data = false,
+                        Status = Domain.Enum.StatusCode.NotFound
+                    };
+                }                                    
                 else
                 {
-                    baseResponse.Status = Domain.Enum.StatusCode.Ok;
-                }
+                    await _productRepository.Delete(product);
 
-                return baseResponse;
+                    return new BaseResponse<bool>()
+                    {
+                        Data = true,
+                        Status = Domain.Enum.StatusCode.Ok
+                    };                   
+                }                
             }
             catch(Exception ex)
             {
-                baseResponse.Data = false;
-                baseResponse.Description = $"[DeleteProduct]: {ex.Message}";
-                baseResponse.Status = Domain.Enum.StatusCode.InternalServerError;
-
-                return baseResponse;
-            }
+                return new BaseResponse<bool>()
+                {
+                    Data = false,
+                    Description = $"[DeleteProduct]: {ex.Message}",
+                    Status = Domain.Enum.StatusCode.InternalServerError,
+                };
+            };
+            
         }
 
         public async Task<BaseResponse<Product>> GetProductByName(string name)

@@ -4,27 +4,29 @@
     ViewData["Title"] = "GetAllProducts";
 }
 
-@if(@Model.Count == 0)
-{
-    <h1 class="text-center">No products (︶︹︺)</h1>
-}
-else
-{       
-    <div class="row row-cols-2 row-cols-lg-5 row-cols-md-3 my-3 mx-1">         
-        @foreach(var product in @Model)
-        {              
-            <div class="col">
-                <div class="card text-bg-dark ">
-                    <img width="70" height="300" src="data:image/jpeg;base64,@(Convert.ToBase64String(product.Image))" class="card-img-top" alt="Hleb">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">@product.Caption</h5>
-                        <p class="card-text">Цена: @product.Price</p>
-                        <a class="btn btn-warning w-25" asp-controller="Product" asp-action="GetProduct" asp-route-id="@product.Id" >Инфо</a>
-                        <a class="btn btn-success w-25" asp-controller="Basket" asp-action="AddToBusket">Купить</a>
-                    </div>                    
-                </div>  
-            </div>           
-        }
-    </div>    
-}
+<div class="row row-cols-2 row-cols-lg-5 row-cols-md-3 my-3 mx-1">         
+    @foreach(var product in @Model)
+    {              
+        <div class="col">
+            <div class="card text-bg-dark ">
+                <img width="70" height="300" src="data:image/jpeg;base64,@(Convert.ToBase64String(product.Image))" class="card-img-top" alt="Hleb">
+                <div class="card-body text-center">
+                    <h5 class="card-title">@product.Caption</h5>
+                    <p class="card-text">Цена: @product.Price</p>
+                    <a class="btn btn-warning w-25" asp-controller="Product" asp-action="GetProduct" asp-route-id="@product.Id" >Инфо</a>
+                    <a class="btn btn-success w-25" asp-controller="Basket" asp-action="AddToBusket">Купить</a>
+                    @if(User.IsInRole("Admin"))
+                    {
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-dark">
+                                <a class="btn btn-danger w-50" asp-route-id="@product.Id" asp-controller="Product" asp-action="DeleteProduct">Удалить</a>
+                            </li>                                                     
+                        </ul>                                            
+                    }
+                </div>                    
+            </div>  
+        </div>           
+    }
+</div>    
+
 

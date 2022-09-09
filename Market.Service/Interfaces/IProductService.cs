@@ -18,7 +18,7 @@ namespace Market.Service.Interfaces
         Task<BaseResponse<Product>> GetProduct(int id);
 
         Task<BaseResponse<bool>> DeleteProduct(int id);
-
+        
         Task<BaseResponse<Product>> GetProductByName(string name);
 
         Task<BaseResponse<ProductViewModel>> CreateProduct(ProductViewModel model);

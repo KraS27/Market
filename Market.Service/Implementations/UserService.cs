@@ -1,15 +1,10 @@
 ﻿using Market.DAL.Interfaces;
-using Market.DAL.Repositories;
 using Market.Domain.Entity;
-using Market.Domain.Helpers;
-using Market.Domain.ViewModels;
 using Market.Service.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,106 +12,87 @@ namespace Market.Service.Implementations
 {
     public class UserService : IUserService
     {
-        private readonly IBaseRepository<User> userRepository;
+        private readonly IBaseRepository<User> _userRepository;
 
         public UserService(IBaseRepository<User> userRepository)
         {
-            this.userRepository = userRepository;
+            _userRepository = userRepository;
         }
 
-        public async Task<BaseResponse<ClaimsIdentity>> Login(LoginViewModel model)
+        public async Task<BaseResponse<IEnumerable<User>>> GetUsers()
         {
             try
             {
-                var user = await userRepository.GetAll().FirstOrDefaultAsync(x =>
-                                                         x.Name == model.Name);
-                if(user == null)
+                var users = await _userRepository.GetAll().ToListAsync();
+
+                if(users != null)
                 {
-                    return new BaseResponse<ClaimsIdentity>()
+                    return new BaseResponse<IEnumerable<User>>
                     {
+                        Data = users,
+                        Status = Domain.Enum.StatusCode.Ok,                       
+                    };
+                }
+                else
+                {
+                    return new BaseResponse<IEnumerable<User>>
+                    {
+                        Description = "В базе данных нету записей",
                         Status = Domain.Enum.StatusCode.NotFound
                     };
                 }
-                else
-                {
-                    if (!HashPasswordHelper.VerifyHashedPassword(user.Password, model.Password))
-                    {
-                        return new BaseResponse<ClaimsIdentity>()
-                        {
-                            Description = "Passwords do not match"
-                        };
-                    }
-
-                    var result = Authenticate(user);
-                    return new BaseResponse<ClaimsIdentity>()
-                    {
-                        Data = result,
-                        Status = Domain.Enum.StatusCode.Ok
-                    };
-                }
             }
             catch(Exception ex)
             {
-                return new BaseResponse<ClaimsIdentity>
+                return new BaseResponse<IEnumerable<User>>
                 {
-                    Description = $"[Login]: {ex.Message}",
+                    Description = $"[GetUsers]: {ex.Message}",
                     Status = Domain.Enum.StatusCode.InternalServerError
                 };
             }
         }
-      
-        public async Task<BaseResponse<ClaimsIdentity>> Register(RegisterViewModel model)
+
+        public Task<BaseResponse<bool>> DeleteUser(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<BaseResponse<User>> GetUser(int id)
         {
             try
             {
-                var user = await userRepository.GetAll()
-                                               .FirstOrDefaultAsync(x => 
-                                               x.Name == model.Name);
+                var user = await _userRepository.GetAll().FirstOrDefaultAsync(user => user.Id == id);
+
                 if(user != null)
                 {
-                    return new BaseResponse<ClaimsIdentity>()
+                    return new BaseResponse<User>
                     {
-                        Description = "User with this name is already registered"
+                        Data = user,
+                        Status = Domain.Enum.StatusCode.Ok
                     };
                 }
                 else
                 {
-                    user = new User()
+                    return new BaseResponse<User>
                     {
-                        Name = model.Name,
-                        Password = HashPasswordHelper.HashPassword(model.Password),
-                        Role = Domain.Enum.UserRole.DefaultUser
-                    };
-                    await userRepository.Create(user);
-                    var result = Authenticate(user);
-
-                    return new BaseResponse<ClaimsIdentity>()
-                    {
-                        Data = result,
+                        Description = "В базе данных нету записей",
                         Status = Domain.Enum.StatusCode.Ok
                     };
-                }             
+                }
             }
             catch(Exception ex)
             {
-                return new BaseResponse<ClaimsIdentity>
+                return new BaseResponse<User>
                 {
-                    Description = $"[Register]: {ex.Message}",
+                    Description = $"[GetUser]: {ex.Message}",
                     Status = Domain.Enum.StatusCode.InternalServerError
                 };
             }
-        }
-       
-        public ClaimsIdentity Authenticate(User user)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Name),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.ToString())
-            };
+        }       
 
-            return new ClaimsIdentity(claims, "ApplicationCookie",
-                       ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+        public Task<BaseResponse<bool>> UpdateUser(int id, User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

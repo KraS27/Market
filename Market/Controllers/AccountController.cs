@@ -10,9 +10,9 @@ namespace Market.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IUserService userService;
+        private readonly IAccountService userService;
         
-        public AccountController(IUserService userService)
+        public AccountController(IAccountService userService)
         {
             this.userService = userService;
         }

@@ -44,6 +44,7 @@ namespace Market
             services.AddScoped<IBaseRepository<User>, UserRepository>();
 
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserService, UserService>();
         }
 

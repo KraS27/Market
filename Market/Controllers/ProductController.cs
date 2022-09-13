@@ -15,7 +15,7 @@ namespace Market.Controllers
             this.productService = productService;
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var response = await productService.DeleteProduct(id);
@@ -29,17 +29,17 @@ namespace Market.Controllers
 
         [HttpGet]
         public async Task<IActionResult> CreateProduct()
-        {
+        {            
             var response = await productService.GetTypes();
 
-            if(response.Status == Domain.Enum.StatusCode.Ok)
+            if (response.Status == Domain.Enum.StatusCode.Ok)
             {
                 return View(new ProductViewModel
                 {
                     ProductTypes = response.Data
                 });
             }
-            return RedirectToAction("Error");           
+            return RedirectToAction("Error");            
         }
 
         [HttpPost]
@@ -88,11 +88,11 @@ namespace Market.Controllers
             }
             return RedirectToAction("Error");
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(int id, ProductViewModel model)
         {
-            var response = await productService.Edit(id, model);
+            var response = await productService.Edit(model.Id, model);
 
             if (response.Status == Domain.Enum.StatusCode.Ok)
             {

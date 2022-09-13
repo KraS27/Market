@@ -1,10 +1,7 @@
 ﻿using Market.Domain.Entity;
-using Market.Domain.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,11 +9,12 @@ namespace Market.Service.Interfaces
 {
     public interface IUserService
     {
-        Task<BaseResponse<ClaimsIdentity>> Register(RegisterViewModel model);
+        Task<BaseResponse<IEnumerable<User>>> GetUsers();
 
-        Task<BaseResponse<ClaimsIdentity>> Login(LoginViewModel model);
+        Task<BaseResponse<User>> GetUser(int id);
 
-        ClaimsIdentity Authenticate(User user);
-        
+        Task<BaseResponse<bool>> DeleteUser(int id);
+
+        Task<BaseResponse<bool>> UpdateUser(int id, User user);
     }
 }

@@ -19,3 +19,20 @@
 
     margin-top: 55px;
 }
+
+.contacts{
+    font-size: 22px;
+    font-family: 'Roboto Slab', serif;
+    text-align: justify;
+    font-weight: 400;
+    color: #262C27;
+}
+
+.contacts-phone-head{
+    font-size: 32px;   
+}
+
+.contacts-social{
+    width: 50;
+    height: 50;
+}

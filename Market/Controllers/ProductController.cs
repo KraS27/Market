@@ -76,19 +76,7 @@ namespace Market.Controllers
             }
             return RedirectToAction("Error");
         }
-
-        [HttpGet]
-        public async Task<IActionResult> GetProductByName(string name)
-        {
-            var response = await productService.GetProductByName(name);
-
-            if (response.Status == Domain.Enum.StatusCode.Ok)
-            {
-                return View(response.Data);
-            }
-            return RedirectToAction("Error");
-        }
-        
+               
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(int id, ProductViewModel model)
         {

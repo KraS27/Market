@@ -13,6 +13,7 @@ namespace Market.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
             var response = await _userService.GetUsers();
@@ -21,6 +22,19 @@ namespace Market.Controllers
             {
                 return View(response.Data);
             }
+            return RedirectToAction("Error");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var response = await _userService.DeleteUser(id);
+
+            if (response.Status == Domain.Enum.StatusCode.Ok)
+            {
+                return RedirectToAction("GetUsers");
+            }
+
             return RedirectToAction("Error");
         }
     }

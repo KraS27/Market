@@ -48,14 +48,13 @@ namespace Market.Service.Implementations
             }
             catch(Exception ex)
             {
-                return new BaseResponse<bool>()
+                return new BaseResponse<bool>
                 {
                     Data = false,
                     Description = $"[DeleteProduct]: {ex.Message}",
                     Status = Domain.Enum.StatusCode.InternalServerError,
                 };
-            };
-            
+            }         
         }
 
         public async Task<BaseResponse<Product>> GetProductByName(string name)

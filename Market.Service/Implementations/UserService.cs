@@ -52,9 +52,41 @@ namespace Market.Service.Implementations
             }
         }
 
-        public Task<BaseResponse<bool>> DeleteUser(int id)
+        public async Task<BaseResponse<bool>> DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var user = await _userRepository.GetAll().FirstOrDefaultAsync(user => user.Id == id);
+
+                if(user != null)
+                {
+                    _userRepository.Delete(user);
+
+                    return new BaseResponse<bool>
+                    {
+                        Data = true,
+                        Status = Domain.Enum.StatusCode.Ok
+                    };
+                }
+                else
+                {
+                    return new BaseResponse<bool>
+                    {
+                        Data = false,
+                        Description = "USER NOT FOUND",
+                        Status = Domain.Enum.StatusCode.NotFound
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<bool>
+                {
+                    Data = false,
+                    Description = $"[DeleteUser]: {ex.Message}",
+                    Status = Domain.Enum.StatusCode.InternalServerError,
+                };
+            }
         }
 
         public async Task<BaseResponse<User>> GetUser(int id)

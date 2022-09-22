@@ -32,7 +32,23 @@
     font-size: 32px;   
 }
 
-.contacts-social{
-    width: 50;
-    height: 50;
+.main-center{
+    background-color: #262C27;
+    height: 750px;
+}
+.main-center-text{
+    font-size: 54px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    color: #ffa25d;   
+    padding-top: 25px;
+}
+.main-center-img{
+    height: 500px;
+    width: 400px;
+    border: #262C27;
+    border-radius: 15px;   
+}
+.main-center-img:hover{
+    filter: brightness(30%);
 }

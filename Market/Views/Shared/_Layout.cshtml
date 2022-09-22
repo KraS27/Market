@@ -35,8 +35,19 @@
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item nav-font">
-                        <a class="nav-link text-white" asp-area="" asp-controller="Product" asp-action="GetAllProducts">Продукция</a>
+                    <li class="nav-item dropdown nav-font text-white">
+                        <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ассортимент</a>
+                        <ul class="dropdown-menu bg-dark">
+                                <li>
+                                    <a class="dropdown-item text-white" asp-controller="Product" asp-action="GetAllProducts">Хлеб</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-white">Сладкое</a>
+                                </li>          
+                                <li>
+                                    <a class="dropdown-item text-white">С начинкой</a>
+                                </li>   
+                            </ul>
                     </li>   
                     @if (User.IsInRole("Admin"))
                     {

@@ -55,7 +55,7 @@ namespace Market.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetAllProducts()
-        {           
+        {
             var response = await productService.GetProducts();
             
             if (response.Status == Domain.Enum.StatusCode.Ok)

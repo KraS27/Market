@@ -34,7 +34,7 @@
 
 .main-center{
     background-color: #262C27;
-    height: 750px;
+    height: 760px;
 }
 .main-center-text{
     font-size: 54px;
@@ -51,4 +51,12 @@
 }
 .main-center-img:hover{
     filter: brightness(30%);
+}
+
+.main-center-btn{
+    font-size: 34px;   
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    border-radius: 15px;
+    background-color: #ffa25d;   
 }

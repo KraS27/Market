@@ -1,26 +1,16 @@
 ﻿@model Market.Domain.Entity.Product
 
-@{
-    ViewData["Title"] = "View";
-    Layout = "_Layout";
-}
-
-<div class="container my-5"> 
-    <div class="card mb-3 text-bg-dark text-white-300">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img width="600" height="400" src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Image))" class="img-fluid rounded-start" alt="Hleb">
+      
+<form>
+    <div class="row">
+        <div class="col-md-12">
+            <img class="w-75 text-center" height="140" src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Image))" class="img-fluid rounded-start" alt="Hleb">
         </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title text-center">@Model.Caption</h5>
-            <p class="card-text">Description: @Model.Description</p>    
-            <p class="card-text">Price: @Model.Price</p>
-          </div>
-        </div>
-        <div class="card-footer bg-transparent border-success text-center text-black">
-            <a class="btn btn-warning w-50">Оставить отзыв</a>
-        </div>
-      </div>
     </div>
-</div>
+    <div class="row">
+        <div class="form-group col-md-4">
+           <label class="col-form-label">Название</label>
+           <input type="text" class="form-control" asp-for="@Model.Caption"/>
+        </div>
+    </div>
+</form>

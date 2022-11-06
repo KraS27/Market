@@ -33,7 +33,7 @@ namespace Market.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(response.Data));
 
-                    return RedirectToAction("GetAllProducts", "Product");
+                    return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", response.Description);
             }
@@ -66,7 +66,7 @@ namespace Market.Controllers
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("GetAllProducts", "Product");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -66,16 +66,26 @@ namespace Market.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProduct(int id)
+        public async Task<IActionResult> GetProduct(int id, bool isJson)
         {
             var response = await productService.GetProduct(id);
+            if (isJson)  
+                return Json(response.Data);
 
-            if (response.Status == Domain.Enum.StatusCode.Ok)
-            {
-                return View(response.Data);
-            }
-            return RedirectToAction("Error");
+            return PartialView("GetProduct", response.Data);
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> GetProduct(int id)
+        //{
+        //    var response = await productService.GetProduct(id);
+
+        //    if (response.Status == Domain.Enum.StatusCode.Ok)
+        //    {
+        //        return View(response.Data);
+        //    }
+        //    return RedirectToAction("Error");
+        //}
                
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(int id, ProductViewModel model)

@@ -13,17 +13,16 @@
                 <div class="card-body text-center">
                     <h5 class="card-title">@product.Caption</h5>
                     <p class="card-text">Цена: @product.Price</p>
-                    <a class="btn btn-warning w-25" asp-controller="Product" asp-action="GetProduct" asp-route-id="@product.Id" >Инфо</a>
+                                                                 
+                    <button class="btn btn-warning" onclick="openModal('/Product/GetProduct', @product.Id)">Инфо</button>
+
                     <a class="btn btn-success w-25" asp-controller="Basket" asp-action="AddToBusket">Купить</a>
                     @if(User.IsInRole("Admin"))
                     {
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item bg-dark">
                                 <a class="btn btn-danger w-50" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@product.Id" >Удалить</a>
-                            </li>    
-                            <li class="list-group-item bg-dark">
-                                <a class="btn btn-warning w-50" asp-controller="Product" asp-action="UpdateProduct" asp-route-id="@product.Id">Изменить</a>
-                            </li>  
+                            </li>                               
                         </ul>                                            
                     }
                 </div>                    
